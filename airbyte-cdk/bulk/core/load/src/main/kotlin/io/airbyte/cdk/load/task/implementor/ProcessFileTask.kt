@@ -46,22 +46,20 @@ class DefaultProcessFileTask(
                 val localFile = File(file.fileMessage.fileUrl)
                 val fileInputStream = localFile.inputStream()
 
-                var partCount = 0L
                 while (true) {
                     val bytePart = ByteArray(1024 * 1024 * 10)
                     val read = fileInputStream.read(bytePart)
 
                     if (read == -1) {
-                        handleFilePart(file, bytePart, partCount, true, acc, streamDescriptor, index)
+                        handleFilePart(file, ByteArray(0), index, true, acc, streamDescriptor, index)
                         log.error { "end of file" }
                         break
                     } else if (read < bytePart.size) {
-                        handleFilePart(file, bytePart, partCount, true, acc, streamDescriptor, index)
+                        handleFilePart(file, bytePart.copyOfRange(0, read), index, true, acc, streamDescriptor, index)
                         log.error { "end of file" }
                         break
                     } else {
-                        handleFilePart(file, bytePart, partCount, false, acc, streamDescriptor, index)
-                        partCount++
+                        handleFilePart(file, bytePart, index, false, acc, streamDescriptor, index)
                     }
                 }
                 localFile.delete()

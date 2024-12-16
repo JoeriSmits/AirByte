@@ -13,14 +13,14 @@ class FilePartAccumulator(
     private val pathFactory: ObjectStoragePathFactory,
     private val stream: DestinationStream,
 ): BatchAccumulator {
-    override suspend fun processFilePart(file: DestinationFile, filePart: ByteArray, partCount: Long, endOfStream: Boolean): Batch {
+    override suspend fun processFilePart(file: DestinationFile, filePart: ByteArray, index: Long, endOfStream: Boolean): Batch {
         val key =
             Path.of(pathFactory.getFinalDirectory(stream), "${file.fileMessage.fileRelativePath}")
                 .toString()
 
         val part = PartFactory(
             key = key,
-            fileNumber = partCount,
+            fileNumber = index,
         )
 
         return LoadablePart(part.nextPart(filePart, isFinal = endOfStream))

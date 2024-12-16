@@ -89,6 +89,6 @@ class SyncBeanFactory {
         config: DestinationConfiguration,
     ): MultiProducerChannel<FileTransferQueueMessage> {
         val channel = Channel<FileTransferQueueMessage>(config.batchQueueDepth)
-        return MultiProducerChannel(config.numProcessRecordsWorkers.toLong(), channel)
+        return MultiProducerChannel(1, channel)
     }
 }

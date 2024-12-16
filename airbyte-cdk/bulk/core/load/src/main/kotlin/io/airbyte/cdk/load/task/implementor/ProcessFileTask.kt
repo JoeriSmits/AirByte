@@ -43,11 +43,12 @@ class DefaultProcessFileTask(
                     streamLoader.createBatchAccumulator(true)
                 }
 
-                val fileInputStream = File(file.fileMessage.fileUrl).inputStream()
+                val localFile = File(file.fileMessage.fileUrl)
+                val fileInputStream = localFile.inputStream()
 
                 var partCount = 0L
                 while (true) {
-                    val bytePart = ByteArray(1024)
+                    val bytePart = ByteArray(1024 * 1024 * 10)
                     val read = fileInputStream.read(bytePart)
 
                     if (read == -1) {
@@ -63,7 +64,9 @@ class DefaultProcessFileTask(
                         partCount++
                     }
                 }
+                localFile.delete()
             }
+            log.error { "Closing input queue" }
         }
     }
 
@@ -79,6 +82,7 @@ class DefaultProcessFileTask(
         if (batch.requiresProcessing) {
             outputQueue.publish(wrapped)
         }
+
     }
 }
 

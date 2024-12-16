@@ -88,14 +88,21 @@ class ObjectStorageStreamLoader<T : RemoteObject<*>, U : OutputStream>(
         val writer: BufferedFormattingWriter<T>,
     )
 
-    override suspend fun createBatchAccumulator(): BatchAccumulator {
-        return RecordToPartAccumulator(
-            pathFactory,
-            bufferedWriterFactory,
-            recordBatchSizeBytes,
-            stream,
-            fileNumber
-        )
+    override suspend fun createBatchAccumulator(isFile: Boolean): BatchAccumulator {
+        return if (isFile) {
+            FilePartAccumulator(
+                pathFactory,
+                stream
+            )
+        } else {
+            RecordToPartAccumulator(
+                pathFactory,
+                bufferedWriterFactory,
+                recordBatchSizeBytes,
+                stream,
+                fileNumber
+            )
+        }
     }
 
     override suspend fun processFile(file: DestinationFile): Batch {

@@ -48,11 +48,11 @@ abstract class S3V2WriteTest(
         super.testAppendSchemaEvolution()
     }
 
-    @Disabled("Temporarily disable because failing in CI")
+    /*@Disabled("Temporarily disable because failing in CI")
     @Test
     override fun testBasicWriteFile() {
         super.testBasicWriteFile()
-    }
+    }*/
 }
 
 class S3V2WriteTestJsonUncompressed :

@@ -44,7 +44,7 @@ interface StreamLoader : BatchAccumulator {
     val stream: DestinationStream
 
     suspend fun start() {}
-    suspend fun createBatchAccumulator(): BatchAccumulator = this
+    suspend fun createBatchAccumulator(isFile: Boolean = false): BatchAccumulator = this
 
     suspend fun processFile(file: DestinationFile): Batch
     suspend fun processBatch(batch: Batch): Batch = SimpleBatch(Batch.State.COMPLETE)
@@ -55,6 +55,16 @@ interface BatchAccumulator {
     suspend fun processRecords(
         records: Iterator<DestinationRecord>,
         totalSizeBytes: Long,
+        endOfStream: Boolean = false
+    ): Batch =
+        throw NotImplementedError(
+            "processRecords must be implemented if createBatchAccumulator is overridden"
+        )
+
+    suspend fun processFilePart(
+        file: DestinationFile,
+        filePart: ByteArray,
+        partCount: Long,
         endOfStream: Boolean = false
     ): Batch =
         throw NotImplementedError(

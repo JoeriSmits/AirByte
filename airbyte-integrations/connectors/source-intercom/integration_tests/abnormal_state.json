@@ -3,10 +3,17 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "segments"
+        "name": "contacts",
+        "namespace": null
       },
       "stream_state": {
-        "updated_at": 9626086649
+        "updated_at": 1715609351,
+        "prior_state": {
+          "updated_at": 1715609351,
+          "prior_state": {
+            "updated_at": 1715609351
+          }
+        }
       }
     }
   },
@@ -14,10 +21,26 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "companies"
+        "name": "conversation_parts",
+        "namespace": null
       },
       "stream_state": {
-        "updated_at": 9626086649
+        "updated_at": 1689067774,
+        "prior_state": {
+          "updated_at": 1689067774,
+          "prior_state": {
+            "updated_at": 1689067774,
+            "conversations": {
+              "updated_at": 1689068230
+            }
+          },
+          "conversations": {
+            "updated_at": 1689068230
+          }
+        },
+        "conversations": {
+          "updated_at": 1689068230
+        }
       }
     }
   },
@@ -25,10 +48,11 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "company_segments"
+        "name": "activity_logs",
+        "namespace": null
       },
       "stream_state": {
-        "updated_at": 9626086649
+        "created_at": 1734005471
       }
     }
   },
@@ -36,10 +60,26 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "conversations"
+        "name": "company_segments",
+        "namespace": null
       },
       "stream_state": {
-        "updated_at": 9626086649
+        "companies": {
+          "updated_at": 1679484652
+        },
+        "updated_at": 1676462345,
+        "prior_state": {
+          "companies": {
+            "updated_at": 1679484652
+          },
+          "updated_at": 1676462345,
+          "prior_state": {
+            "companies": {
+              "updated_at": 1679484652
+            },
+            "updated_at": 1676462345
+          }
+        }
       }
     }
   },
@@ -47,10 +87,17 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "conversation_parts"
+        "name": "companies",
+        "namespace": null
       },
       "stream_state": {
-        "updated_at": 9626086649
+        "updated_at": 1689068298,
+        "prior_state": {
+          "updated_at": 1689068298,
+          "prior_state": {
+            "updated_at": 1689068298
+          }
+        }
       }
     }
   },
@@ -58,10 +105,17 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "contacts"
+        "name": "segments",
+        "namespace": null
       },
       "stream_state": {
-        "updated_at": 9626086649
+        "updated_at": 1676297667,
+        "prior_state": {
+          "updated_at": 1676297667,
+          "prior_state": {
+            "updated_at": 1676297667
+          }
+        }
       }
     }
   },
@@ -69,10 +123,77 @@
     "type": "STREAM",
     "stream": {
       "stream_descriptor": {
-        "name": "activity_logs"
+        "name": "conversations",
+        "namespace": null
       },
       "stream_state": {
-        "created_at": 9626086649
+        "updated_at": 1689068230,
+        "prior_state": {
+          "updated_at": 1689068230,
+          "prior_state": {
+            "updated_at": 1689068230
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "STREAM",
+    "stream": {
+      "stream_descriptor": {
+        "name": "contact_attributes",
+        "namespace": null
+      },
+      "stream_state": {
+        "__ab_full_refresh_sync_complete": true
+      }
+    }
+  },
+  {
+    "type": "STREAM",
+    "stream": {
+      "stream_descriptor": {
+        "name": "admins",
+        "namespace": null
+      },
+      "stream_state": {
+        "__ab_full_refresh_sync_complete": true
+      }
+    }
+  },
+  {
+    "type": "STREAM",
+    "stream": {
+      "stream_descriptor": {
+        "name": "company_attributes",
+        "namespace": null
+      },
+      "stream_state": {
+        "__ab_full_refresh_sync_complete": true
+      }
+    }
+  },
+  {
+    "type": "STREAM",
+    "stream": {
+      "stream_descriptor": {
+        "name": "teams",
+        "namespace": null
+      },
+      "stream_state": {
+        "__ab_full_refresh_sync_complete": true
+      }
+    }
+  },
+  {
+    "type": "STREAM",
+    "stream": {
+      "stream_descriptor": {
+        "name": "tags",
+        "namespace": null
+      },
+      "stream_state": {
+        "__ab_full_refresh_sync_complete": true
       }
     }
   }

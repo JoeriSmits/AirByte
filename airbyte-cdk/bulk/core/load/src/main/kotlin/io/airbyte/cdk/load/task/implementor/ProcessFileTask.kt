@@ -36,7 +36,6 @@ class DefaultProcessFileTask(
     override suspend fun execute() {
         outputQueue.use {
             inputQueue.consume().collect { (streamDescriptor, file, index) ->
-                log.error { "consuming index $index" }
                 val streamLoader = syncManager.getOrAwaitStreamLoader(streamDescriptor)
 
                 val acc = accumulators.getOrPut(streamDescriptor) {
@@ -52,11 +51,9 @@ class DefaultProcessFileTask(
 
                     if (read == -1) {
                         handleFilePart(file, ByteArray(0), index, true, acc, streamDescriptor, index)
-                        log.error { "end of file" }
                         break
                     } else if (read < bytePart.size) {
                         handleFilePart(file, bytePart.copyOfRange(0, read), index, true, acc, streamDescriptor, index)
-                        log.error { "end of file" }
                         break
                     } else {
                         handleFilePart(file, bytePart, index, false, acc, streamDescriptor, index)
@@ -64,7 +61,6 @@ class DefaultProcessFileTask(
                 }
                 localFile.delete()
             }
-            log.error { "Closing input queue" }
         }
     }
 

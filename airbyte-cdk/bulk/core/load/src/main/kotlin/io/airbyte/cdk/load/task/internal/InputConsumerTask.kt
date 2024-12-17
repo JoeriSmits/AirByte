@@ -106,7 +106,6 @@ class DefaultInputConsumerTask(
                 reserved.release() // safe because multiple calls conflate
                 manager.markEndOfStream(true)
                 fileTransferQueue.close()
-                log.error { "End Of Stream" }
                 val envelope =
                     BatchEnvelope(
                         SimpleBatch(Batch.State.COMPLETE),

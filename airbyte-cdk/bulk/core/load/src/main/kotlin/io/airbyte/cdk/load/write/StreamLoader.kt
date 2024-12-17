@@ -64,7 +64,7 @@ interface BatchAccumulator {
     suspend fun processFilePart(
         file: DestinationFile,
         filePart: ByteArray,
-        partCount: Long,
+        index: Long,
         endOfStream: Boolean = false
     ): Batch =
         throw NotImplementedError(
